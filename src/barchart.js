@@ -7,25 +7,28 @@ class BarChart extends Component {
   }
     
   drawChart() {
-		const data = [12, 5, 6, 6, 9, 10];
-		const w = 400;
-		const h = 100;
+		const data = [12, 5, 6];
+
+    const svgContainer = d3.select("body")
+                            .append("svg")
+                            .attr("width", 200)
+                            .attr("height", 200);
+
+    const circles = svgContainer.selectAll("circle")
+                                .data(data)
+                                .enter()
+                                .append("circle");
+
+    const circleAttributes = circles
+                            .attr("cx", 50)
+                            .attr("cy", 50)
+                            .attr("r", function(d) {return d;})
+                            .style("fill", "green");
+
+    //let svg = d3.pie()(data);
     
-    const svg = d3.select("body")
-    .append("svg")
-    .attr("width", w)
-    .attr("height", h)
-    .style("margin-left", 100);
-                  
-    svg.selectAll("rect")
-      .data(data)
-      .enter()
-      .append("rect")
-      .attr("x", (d, i) => i * 70)
-      .attr("y", (d, i) => h - 10 * d)
-      .attr("width", 65)
-      .attr("height", (d, i) => d * 10)
-      .attr("fill", "green");
+    console.log(circles);
+
   }
         
   render(){
