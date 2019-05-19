@@ -7,7 +7,7 @@ class BarChart extends Component {
   }
     
   drawChart() {
-		const data = [12, 5, 6];
+		const data = [12, 5, 8];
 
     const svgContainer = d3.select("body")
                             .append("svg")
@@ -20,9 +20,9 @@ class BarChart extends Component {
                                 .append("circle");
 
     const circleAttributes = circles
-                            .attr("cx", 50)
-                            .attr("cy", 50)
-                            .attr("r", function(d) {return d;})
+                            .attr("cx", function(d) {return d * 5;})
+                            .attr("cy", function(d) {return d * 10;})
+                            .attr("r", function(d) {return d * 2;})
                             .style("fill", "green");
 
     //let svg = d3.pie()(data);
